@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: camunda-spring-boot
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    username: postgres
+    password: nguyenthai98
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=camunda
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+management:
+  health.camunda.enabled: true
+camunda:
+  bpm:
+    enabled: true
+    process-engine-name: 'camundaSpringProcessEngineName'
+#    generate-unique-process-engine-name: true
+#    generate-unique-process-application-name: true
+    history-level: full
+    auto-deployment-enabled: true
+    default-number-of-retries: 3
+    job-executor-acquire-by-priority: true
+    id-generator: ${spring.application.name}
+    deployment-resource-pattern: classpath*:bpmn/*.bpmn
+    eventing:
+      execution: true
+      history: true
+      skippable: true
+      task: true
+    database:
+      type: postgres
+      schema-update: true
+      table-prefix: camunda.
+      schema-name: camunda
+    jpa:
+      enabled: true
+      handle-transaction: true
+      close-entity-manager: true
+      persistence-unit-name: 'default'
+    metrics:
+      enabled: true
+      db-reporter-activate: true
+    webapp:
+      index-redirect-enabled: true
+    authorization:
+      enabled: false
+    job-execution:
+      enabled: true
+      deployment-aware: true
+      core-pool-size: 10
+      keep-alive-seconds: 10000
+      lock-time-in-millis: 120000
+      max-jobs-per-acquisition: 3
+      max-pool-size: 15
+      queue-capacity: 3
+      wait-time-in-millis: 5000
+      max-wait: 60000
+      backoff-time-in-millis: 1
+      max-backoff: 5
+      backoff-decrease-threshold: 10
+      wait-increase-factor: 2
