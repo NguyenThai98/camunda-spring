@@ -12,6 +12,6 @@ public class EndCaseProcess implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        System.out.println("execution.getEventName() = " + execution.getEventName());
+        System.out.println("execution.getEventName() = " + execution);
     }
 }

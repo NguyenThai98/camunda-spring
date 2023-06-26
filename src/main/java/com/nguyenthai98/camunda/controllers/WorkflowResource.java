@@ -20,8 +20,8 @@ public class WorkflowResource {
     }
 
     @GetMapping("/takeOrderProcess")
-    public String takeOrderProcess(@RequestParam String processKey){
-        orderProcessService.takeToProcess(processKey);
+    public String takeOrderProcess(@RequestParam String processKey, @RequestParam boolean isFinished){
+        orderProcessService.takeToProcess(processKey, isFinished);
         return "OK";
     }
 }

@@ -31,11 +31,11 @@ public class OrderProcessService {
         return instance.getId();
     }
 
-    public void takeToProcess(String processKey){
+    public void takeToProcess(String processKey, boolean isFinished){
         Map<String, Object> variables = new HashMap<String,Object>();
         variables.put("creditor", "Nice Pizza Inc.");
         variables.put("assignee", "user1");
-        variables.put("isFinished", false);
+        variables.put("isFinished", isFinished);
         taskService.complete(processKey, variables);
     }
 
